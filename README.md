@@ -1,6 +1,8 @@
 ##  Documentación
 
  [Ver documentación de Scopes](scopes.md)
+  [Ver documentación de Scopes](README2.md)
+
  
 # quarkus-getting-started
 
