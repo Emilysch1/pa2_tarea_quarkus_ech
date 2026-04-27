@@ -1,3 +1,7 @@
+##  Documentación
+
+ [Ver documentación de Scopes](scopes.md)
+ 
 # quarkus-getting-started
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
