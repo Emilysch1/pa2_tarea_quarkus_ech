@@ -5,6 +5,7 @@ public class TicketSoporte {
     private String equipo;
     private String componente;
     private double costoBase;
+    private double total;
 
     public TicketSoporte() {
 
@@ -39,5 +40,14 @@ public class TicketSoporte {
     public void setCostoBase(double costoBase) {
         this.costoBase = costoBase;
     }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
 
 }
