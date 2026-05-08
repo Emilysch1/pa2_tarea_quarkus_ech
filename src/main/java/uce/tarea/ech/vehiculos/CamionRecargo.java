@@ -1,0 +1,20 @@
+package uce.tarea.ech.vehiculos;
+
+import jakarta.annotation.Priority;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+@Priority(3)    
+public class CamionRecargo implements Recargo {
+    
+    @Override
+    public double aplicar(double valor) {
+        return valor +(valor * 0.15); 
+    }
+
+    @Override
+    public String obtenerTipo() {
+        return "Camion";
+    }
+
+}
