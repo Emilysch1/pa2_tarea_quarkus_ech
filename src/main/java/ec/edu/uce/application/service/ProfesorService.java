@@ -42,4 +42,29 @@ public class ProfesorService {
         this.profesorRepository.eliminar(id);
     }
 
+    public void listarTodos() {
+        for (Profesor p : this.profesorRepository.seleccionarTodos()) {
+            System.out.println(
+                    p.getId() + ": " + p.getNombre() + " " + p.getApellido() + " - Materia: " + p.getMateria());
+        }
+    }
+
+    public void consultarPorNombre(String nombre) {
+        for (Profesor p : this.profesorRepository.seleccionarPorNombre(nombre)) {
+            System.out
+                    .println("Profesor encontrado: " + "\n" + p.getId() + ": " + p.getNombre() + " " + p.getApellido() + 
+                    " \nMateria: " + p.getMateria());
+        }
+    }
+
+    public void consultarPorMateria(String materia) {
+        Profesor p = this.profesorRepository.seleccionarPorMateria(materia);
+        if (p != null) {
+            System.out.println("Profesor encontrado para la materia " + materia + ": " + "\n" + p.getId() + ": "
+                    + p.getNombre() + " " + p.getApellido());
+        } else {
+            System.out.println("No se encontro ningun profesor que dicte la materia: " + materia);
+        }
+    }
+
 }
