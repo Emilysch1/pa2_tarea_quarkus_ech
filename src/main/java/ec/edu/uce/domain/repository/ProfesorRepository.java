@@ -26,4 +26,8 @@ public interface ProfesorRepository {
     public List<Profesor> seleccionarPorHoraTyped(LocalTime horaInicio, LocalTime horaFin);
 
     public Long seleccionarContar();
+
+    public List<Profesor> seleccionarTodasMateriasNative();
+
+    public List<Profesor> seleccionarTodosProfesores();
 }

@@ -26,10 +26,16 @@ public class Main {
             System.out.println("--- Iniciando Pruebas de Profesores ---");
 
         
-            profesorService.consultarPorMateriaTyped("Literatura");
+           /* profesorService.consultarPorMateriaTyped("Literatura");
             profesorService.consultarPorCorreoTyped("emilioch@gmail.com");
             profesorService.consultarPorHoraTyped(LocalTime.of(6, 45), LocalTime.of(13, 35));
-            profesorService.contarProfesores();
+            profesorService.contarProfesores();*/
+
+            //Native Query
+            System.out.println("--- Consultando todas las materias con Native Query ---");
+            profesorService.consultarTodasMateriasNative();
+            profesorService.consultarTodosProfesores();
+
             return 0;
 
         }

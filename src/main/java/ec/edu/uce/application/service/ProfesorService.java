@@ -33,8 +33,8 @@ public class ProfesorService {
     public void actualizar(Integer id, String nuevoNombre) {
         Profesor p = this.profesorRepository.seleccionarPorId(id);
         if (p != null) {
-            p.setNombre(nuevoNombre); 
-            this.profesorRepository.actualizar(p); 
+            p.setNombre(nuevoNombre);
+            this.profesorRepository.actualizar(p);
         } else {
             System.out.println("No se pudo actualizar: profesor no encontrado.");
         }
@@ -54,8 +54,8 @@ public class ProfesorService {
     public void consultarPorNombre(String nombre) {
         for (Profesor p : this.profesorRepository.seleccionarPorNombre(nombre)) {
             System.out
-                    .println("Profesor encontrado: " + "\n" + p.getId() + ": " + p.getNombre() + " " + p.getApellido() + 
-                    " \nMateria: " + p.getMateria());
+                    .println("Profesor encontrado: " + "\n" + p.getId() + ": " + p.getNombre() + " " + p.getApellido() +
+                            " \nMateria: " + p.getMateria());
         }
     }
 
@@ -77,12 +77,25 @@ public class ProfesorService {
         for (Profesor p : this.profesorRepository.seleccionarPorHoraTyped(horaInicio, horaFin)) {
             System.out.println(
                     "Profesor : " + p.getNombre() + " " + p.getApellido() + " - Horario: "
-                    + p.getHoraInicio() + " a " + p.getHoraFin());
+                            + p.getHoraInicio() + " a " + p.getHoraFin());
         }
     }
 
     public void contarProfesores() {
-        Long total = this.profesorRepository.seleccionarContar(); 
+        Long total = this.profesorRepository.seleccionarContar();
         System.out.println("Total de profesores: " + total);
+    }
+
+    public void consultarTodasMateriasNative() {
+        for (Profesor p : this.profesorRepository.seleccionarTodasMateriasNative()) {
+            System.out.println("Materia: " + p.getMateria());
+        }
+    }
+
+    public void consultarTodosProfesores() {
+        for (Profesor p : this.profesorRepository.seleccionarTodosProfesores()) {
+            System.out.println(
+                    "Profesor: " + p.getNombre() + " " + p.getApellido());
+        }
     }
 }

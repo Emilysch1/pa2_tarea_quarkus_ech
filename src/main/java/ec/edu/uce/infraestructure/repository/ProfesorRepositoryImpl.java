@@ -9,6 +9,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -55,7 +56,7 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
         return miQuery.getResultList();
     }
 
- @Override
+    @Override
     public List<Profesor> seleccionarPorMateria(String materia) {
         TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorMateria", Profesor.class);
         myQuery.setParameter("materia", materia);
@@ -81,6 +82,18 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
     public Long seleccionarContar() { // Cambiado el nombre para evitar duplicado
         TypedQuery<Long> myQuery = this.em.createNamedQuery("Profesor.contar", Long.class);
         return myQuery.getSingleResult();
+    }
+
+    @Override
+    public List<Profesor> seleccionarTodasMateriasNative() {
+        Query myQuery = this.em.createNativeQuery("SELECT * FROM profesor", Profesor.class);
+        return (List<Profesor>) myQuery.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarTodosProfesores() {
+       Query myQuery = this.em.createNativeQuery("SELECT * FROM profesor", Profesor.class);
+       return (List<Profesor>) myQuery.getResultList();
     }
 
 }
