@@ -1,5 +1,7 @@
 package ec.edu.uce.application.service;
 
+import java.time.LocalTime;
+
 import ec.edu.uce.domain.model.Profesor;
 import ec.edu.uce.domain.repository.ProfesorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -31,8 +33,8 @@ public class ProfesorService {
     public void actualizar(Integer id, String nuevoNombre) {
         Profesor p = this.profesorRepository.seleccionarPorId(id);
         if (p != null) {
-            p.setNombre(nuevoNombre); // Cambia el nombre internamente
-            this.profesorRepository.actualizar(p); // Guarda el cambio
+            p.setNombre(nuevoNombre); 
+            this.profesorRepository.actualizar(p); 
         } else {
             System.out.println("No se pudo actualizar: profesor no encontrado.");
         }
@@ -57,14 +59,30 @@ public class ProfesorService {
         }
     }
 
-    public void consultarPorMateria(String materia) {
-        Profesor p = this.profesorRepository.seleccionarPorMateria(materia);
-        if (p != null) {
-            System.out.println("Profesor encontrado para la materia " + materia + ": " + "\n" + p.getId() + ": "
-                    + p.getNombre() + " " + p.getApellido());
-        } else {
-            System.out.println("No se encontro ningun profesor que dicte la materia: " + materia);
+    public void consultarPorMateriaTyped(String materia) {
+        for (Profesor p : this.profesorRepository.seleccionarPorMateria(materia)) {
+            System.out.println(
+                    "Profesor: " + p.getNombre() + " " + p.getApellido() + " - " + p.getMateria());
         }
     }
 
+    public void consultarPorCorreoTyped(String correo) {
+        for (Profesor p : this.profesorRepository.seleccionarPorCorreoTyped(correo)) {
+            System.out.println(
+                    "Profesor: " + p.getNombre() + " " + p.getApellido() + " - " + p.getCorreo());
+        }
+    }
+
+    public void consultarPorHoraTyped(LocalTime horaInicio, LocalTime horaFin) {
+        for (Profesor p : this.profesorRepository.seleccionarPorHoraTyped(horaInicio, horaFin)) {
+            System.out.println(
+                    "Profesor : " + p.getNombre() + " " + p.getApellido() + " - Horario: "
+                    + p.getHoraInicio() + " a " + p.getHoraFin());
+        }
+    }
+
+    public void contarProfesores() {
+        Long total = this.profesorRepository.seleccionarContar(); 
+        System.out.println("Total de profesores: " + total);
+    }
 }

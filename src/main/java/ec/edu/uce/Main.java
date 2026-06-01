@@ -1,7 +1,8 @@
 package ec.edu.uce;
 
+import java.time.LocalTime;
+
 import ec.edu.uce.application.service.ProfesorService;
-import ec.edu.uce.domain.model.Profesor;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -23,13 +24,12 @@ public class Main {
         public int run(String... args) {
 
             System.out.println("--- Iniciando Pruebas de Profesores ---");
-            // Listar Profesor
-            profesorService.listarTodos();
-            // Buscar por nombre
-            profesorService.consultarPorNombre("Emilio");
-            // Buscar por materia
-            profesorService.consultarPorMateria("Matemáticas");
 
+        
+            profesorService.consultarPorMateriaTyped("Literatura");
+            profesorService.consultarPorCorreoTyped("emilioch@gmail.com");
+            profesorService.consultarPorHoraTyped(LocalTime.of(6, 45), LocalTime.of(13, 35));
+            profesorService.contarProfesores();
             return 0;
 
         }

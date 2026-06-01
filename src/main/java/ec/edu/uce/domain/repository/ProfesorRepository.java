@@ -1,5 +1,6 @@
 package ec.edu.uce.domain.repository;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import ec.edu.uce.domain.model.Profesor;
@@ -18,6 +19,11 @@ public interface ProfesorRepository {
 
     public List<Profesor> seleccionarPorNombre(String nombre);
 
-    public Profesor seleccionarPorMateria(String materia);
+    public List<Profesor> seleccionarPorMateria(String materia);
 
+    public List<Profesor> seleccionarPorCorreoTyped(String correo);
+
+    public List<Profesor> seleccionarPorHoraTyped(LocalTime horaInicio, LocalTime horaFin);
+
+    public Long seleccionarContar();
 }

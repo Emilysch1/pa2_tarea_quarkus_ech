@@ -1,5 +1,6 @@
 package ec.edu.uce.infraestructure.repository;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import ec.edu.uce.domain.model.Profesor;
@@ -54,13 +55,32 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
         return miQuery.getResultList();
     }
 
-    @Override
-    public Profesor seleccionarPorMateria(String materia) {
-        TypedQuery<Profesor> miQuery = this.em.createQuery(
-                "SELECT p FROM Profesor p WHERE p.materia LIKE CONCAT('%', :materia1, '%')",
-                Profesor.class);
-        miQuery.setParameter("materia1", materia);
-
-        return miQuery.getResultList().getLast();
+ @Override
+    public List<Profesor> seleccionarPorMateria(String materia) {
+        TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorMateria", Profesor.class);
+        myQuery.setParameter("materia", materia);
+        return myQuery.getResultList();
     }
+
+    @Override
+    public List<Profesor> seleccionarPorCorreoTyped(String correo) {
+        TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorCorreo", Profesor.class);
+        myQuery.setParameter("correo", correo);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorHoraTyped(LocalTime horaInicio, LocalTime horaFin) {
+        TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorHora", Profesor.class);
+        myQuery.setParameter("horaInicio", horaInicio);
+        myQuery.setParameter("horaFin", horaFin);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public Long seleccionarContar() { // Cambiado el nombre para evitar duplicado
+        TypedQuery<Long> myQuery = this.em.createNamedQuery("Profesor.contar", Long.class);
+        return myQuery.getSingleResult();
+    }
+
 }
