@@ -25,17 +25,16 @@ public class Main {
 
             System.out.println("--- Iniciando Pruebas de Profesores ---");
 
-        
-           /* profesorService.consultarPorMateriaTyped("Literatura");
-            profesorService.consultarPorCorreoTyped("emilioch@gmail.com");
-            profesorService.consultarPorHoraTyped(LocalTime.of(6, 45), LocalTime.of(13, 35));
-            profesorService.contarProfesores();*/
+            profesorService.listarTodosCriteria();
 
-            //Native Query
-            System.out.println("--- Consultando todas las materias con Native Query ---");
-            profesorService.consultarTodasMateriasNative();
-            profesorService.consultarTodosProfesores();
+            profesorService.consultarPorMateriaCriteria("CCSS");
 
+            profesorService.consultarDinamicoCriteria("Emilio", null);
+            profesorService.consultarDinamicoCriteria(null, "Chango");
+            profesorService.consultarDinamicoCriteria("Emilio", "Chango");
+            profesorService.consultarDinamicoCriteria(null, null);
+
+            
             return 0;
 
         }

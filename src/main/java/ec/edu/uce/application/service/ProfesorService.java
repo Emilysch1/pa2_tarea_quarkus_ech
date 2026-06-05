@@ -98,4 +98,23 @@ public class ProfesorService {
                     "Profesor: " + p.getNombre() + " " + p.getApellido());
         }
     }
+
+    public void listarTodosCriteria() {
+        for (Profesor p : this.profesorRepository.seleccionarTodosCriteria()) {
+            System.out.println("Estudiante: " + p);
+        }
+    }
+
+    public void consultarPorMateriaCriteria(String materia) {
+        for (Profesor p : this.profesorRepository.seleccionarPorMateriaCriteria(materia)) {
+            System.out.println("Criteria Materia: " + p);
+        }
+    }
+
+    public void consultarDinamicoCriteria(String nombre, String apellido) {
+        for (Profesor p : this.profesorRepository.seleccionarDinamicoCriteria(nombre, apellido)) {
+            System.out.println("Criteria Dinamico: " + p);
+        }
+    }
+
 }

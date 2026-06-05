@@ -101,4 +101,11 @@ public class Profesor {
         this.horaFin = horaFin;
     }
 
+    @Override
+    public String toString() {
+        return "Profesor id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + "";
+    }
+
+    
+
 }

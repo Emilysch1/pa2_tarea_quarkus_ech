@@ -19,7 +19,6 @@ public interface ProfesorRepository {
 
     public List<Profesor> seleccionarPorNombre(String nombre);
 
-    public List<Profesor> seleccionarPorMateria(String materia);
 
     public List<Profesor> seleccionarPorCorreoTyped(String correo);
 
@@ -30,4 +29,12 @@ public interface ProfesorRepository {
     public List<Profesor> seleccionarTodasMateriasNative();
 
     public List<Profesor> seleccionarTodosProfesores();
+
+    public List<Profesor> seleccionarTodosCriteria();
+
+    public List<Profesor> seleccionarPorMateriaCriteria(String materia);
+
+    public List<Profesor> seleccionarDinamicoCriteria(String nombre, String apellido);
+
+
 }
