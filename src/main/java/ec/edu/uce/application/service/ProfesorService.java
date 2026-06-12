@@ -59,12 +59,6 @@ public class ProfesorService {
         }
     }
 
-    public void consultarPorMateriaTyped(String materia) {
-        for (Profesor p : this.profesorRepository.seleccionarPorMateria(materia)) {
-            System.out.println(
-                    "Profesor: " + p.getNombre() + " " + p.getApellido() + " - " + p.getMateria());
-        }
-    }
 
     public void consultarPorCorreoTyped(String correo) {
         for (Profesor p : this.profesorRepository.seleccionarPorCorreoTyped(correo)) {

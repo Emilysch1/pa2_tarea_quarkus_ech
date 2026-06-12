@@ -1,8 +1,8 @@
 package ec.edu.uce;
 
-import java.time.LocalTime;
-
-import ec.edu.uce.application.service.ProfesorService;
+import ec.edu.uce.application.service.MotorService;
+import ec.edu.uce.domain.model.Automovil;
+import ec.edu.uce.domain.model.Motor;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -18,23 +18,21 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private ProfesorService profesorService;
+        private MotorService motorservice;
 
         @Override
         public int run(String... args) {
 
-            System.out.println("--- Iniciando Pruebas de Profesores ---");
+            System.out.println("--- Iniciando ---");
+            Motor m = new Motor();
 
-            profesorService.listarTodosCriteria();
+            m.setNumeroSerie("ABC987654321");
+            m.setCilindraje("1.6L EcoBoost");
 
-            profesorService.consultarPorMateriaCriteria("CCSS");
+            this.motorservice.guardar(m);
 
-            profesorService.consultarDinamicoCriteria("Emilio", null);
-            profesorService.consultarDinamicoCriteria(null, "Chango");
-            profesorService.consultarDinamicoCriteria("Emilio", "Chango");
-            profesorService.consultarDinamicoCriteria(null, null);
+            System.out.println("--- Terminando ---");
 
-            
             return 0;
 
         }
