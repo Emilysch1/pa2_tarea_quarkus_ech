@@ -1,5 +1,6 @@
 package ec.edu.uce;
 
+import ec.edu.uce.application.service.AutomovilService;
 import ec.edu.uce.application.service.MotorService;
 import ec.edu.uce.domain.model.Automovil;
 import ec.edu.uce.domain.model.Motor;
@@ -20,21 +21,27 @@ public class Main {
         @Inject
         private MotorService motorservice;
 
+        @Inject
+        private AutomovilService automovilService;
+
         @Override
         public int run(String... args) {
 
             System.out.println("--- Iniciando ---");
             Motor m = new Motor();
+            m.setNumeroSerie("BMW-V8-998877");
+            m.setCilindraje("4.4L TwinPower");
 
-            m.setNumeroSerie("ABC987654321");
-            m.setCilindraje("1.6L EcoBoost");
-
-            this.motorservice.guardar(m);
+  
+            Automovil a = new Automovil();
+            a.setMarca("BMW M5");
+            a.setPlaca("PBA9876");
+            a.setMotor(m);
+            this.automovilService.guardar(a);
 
             System.out.println("--- Terminando ---");
 
             return 0;
-
         }
     }
 }
