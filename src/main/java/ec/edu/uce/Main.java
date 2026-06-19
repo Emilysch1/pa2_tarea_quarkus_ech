@@ -1,9 +1,12 @@
 package ec.edu.uce;
 
-import ec.edu.uce.application.service.AutomovilService;
-import ec.edu.uce.application.service.MotorService;
-import ec.edu.uce.domain.model.Automovil;
-import ec.edu.uce.domain.model.Motor;
+import java.util.ArrayList;
+import java.util.List;
+
+import ec.edu.uce.application.service.ArticuloServicie;
+import ec.edu.uce.domain.model.Articulo;
+
+import ec.edu.uce.domain.model.Comentario;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -19,25 +22,34 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private MotorService motorservice;
-
-        @Inject
-        private AutomovilService automovilService;
+        private ArticuloServicie articuloServicie;
 
         @Override
         public int run(String... args) {
 
             System.out.println("--- Iniciando ---");
-            Motor m = new Motor();
-            m.setNumeroSerie("BMW-V8-998877");
-            m.setCilindraje("4.4L TwinPower");
 
-  
-            Automovil a = new Automovil();
-            a.setMarca("BMW M5");
-            a.setPlaca("PBA9876");
-            a.setMotor(m);
-            this.automovilService.guardar(a);
+            Articulo a = new Articulo();
+            a.setTitulo("El baile de la luna");
+            a.setContenido("La luna tuvo un gran baile con jupiter");
+
+            Comentario com1 = new Comentario();
+            com1.setNombre("Emily");
+            com1.setArticulo(a);
+            com1.setTexto("Es muy corto este articulo");
+
+            Comentario com2 = new Comentario();
+            com2.setNombre("Juan");
+            com2.setArticulo(a);
+            com2.setTexto("Me encanta");
+
+            List<Comentario> comentarios = new ArrayList<>();
+            comentarios.add(com1);
+            comentarios.add(com2);
+
+            a.setComentarios(comentarios);
+
+            articuloServicie.guardar(a);
 
             System.out.println("--- Terminando ---");
 
