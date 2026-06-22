@@ -1,12 +1,10 @@
 package ec.edu.uce;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import ec.edu.uce.application.service.ArticuloServicie;
-import ec.edu.uce.domain.model.Articulo;
-
-import ec.edu.uce.domain.model.Comentario;
+import ec.edu.uce.application.service.MedicoService;
+import ec.edu.uce.application.service.PacienteService;
+import ec.edu.uce.domain.model.Medico;
+import ec.edu.uce.domain.model.Paciente;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -22,37 +20,37 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private ArticuloServicie articuloServicie;
+        private MedicoService medicoService;
+
+        @Inject
+       private PacienteService pacienteService;
 
         @Override
         public int run(String... args) {
+            System.out.println("====== INICIANDO TALLER MODELO MANY-TO-MANY ======");
 
-            System.out.println("--- Iniciando ---");
+            // 1. Crear y guardar Pacientes independientes
+            Paciente paci1 = new Paciente();
+            paci1.setNombre("Emily Chango");
+            paci1.setEdad(21);
+            this.pacienteService.guardar(paci1);
 
-            Articulo a = new Articulo();
-            a.setTitulo("El baile de la luna");
-            a.setContenido("La luna tuvo un gran baile con jupiter");
+            Paciente paci2 = new Paciente();
+            paci2.setNombre("Carlos Andrade");
+            paci2.setEdad(25);
+            this.pacienteService.guardar(paci2);
 
-            Comentario com1 = new Comentario();
-            com1.setNombre("Emily");
-            com1.setArticulo(a);
-            com1.setTexto("Es muy corto este articulo");
+            // 2. Crear y guardar Médico con su lista inicializada
+            Medico medico = new Medico();
+            medico.setNombre("Dr. Segovia");
+            medico.setPacientes(new ArrayList<>());
+            
+            // Usamos el método de tu servicio para registrar médicos
+            this.medicoService.guardar(medico);
 
-            Comentario com2 = new Comentario();
-            com2.setNombre("Juan");
-            com2.setArticulo(a);
-            com2.setTexto("Me encanta");
+    
 
-            List<Comentario> comentarios = new ArrayList<>();
-            comentarios.add(com1);
-            comentarios.add(com2);
-
-            a.setComentarios(comentarios);
-
-            articuloServicie.guardar(a);
-
-            System.out.println("--- Terminando ---");
-
+            System.out.println("\n====== PROCESO FINALIZADO CON ÉXITO ======");
             return 0;
         }
     }

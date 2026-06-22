@@ -1,10 +1,15 @@
 package ec.edu.uce.domain.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -24,6 +29,9 @@ public class Paciente {
     @Column(name = "paci_edad")
     private Integer edad;
 
+     @ManyToMany(mappedBy = "pacientes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+     private List<Medico> medicos;
+
     public Integer getId() {
         return id;
     }
@@ -42,5 +50,12 @@ public class Paciente {
     public void setEdad(Integer edad) {
         this.edad = edad;
     }
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
+    }
+    
 
 }

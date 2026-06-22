@@ -2,6 +2,7 @@ package ec.edu.uce.domain.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +27,8 @@ public class Medico {
     @Column(name = "medi_nombre")
     private String nombre;
 
-    @ManyToMany
-    @JoinTable(name = "medico_paciente", joinColumns = @JoinColumn(name = "mepa_id_medico"), inverseJoinColumns = @JoinColumn(name = "medi_id_paciente"))
+     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "medico_paciente", joinColumns = @JoinColumn(name = "mepa_id_medico"), inverseJoinColumns = @JoinColumn(name = "mepa_id_paciente"))
     private List<Paciente> pacientes;
 
     public Integer getId() {
